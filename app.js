@@ -17,6 +17,11 @@ $(document).ready(function(){
 		monthlySalaryTotal(employeeArray);
 		appendDom(values);
 	});
+
+		$("#employeeContainer").on('click', '.deleteButton', function(){
+			var $el = $(this).parent();//Still working on this part
+
+		})
 });
 
 function appendDom(employee){
@@ -24,11 +29,14 @@ function appendDom(employee){
 	$("#employeeContainer").append("<div class='employee'></div>");
 	var $el = $("#employeeContainer").children().last();
 
-	$el.append("<p>" + employee.employeename + "</p>");
-	$el.append("<p>" + employee.employeenumber + "</p>");
-	$el.append("<p>" + employee.jobtitle + "</p>");
-	$el.append("<p>" + employee.annualsalary + "</p>");
-	//$el.append("<p>") + answer + "</p>");
+	$el.append("<p> Employee Name: " + employee.employeename + "</p>");
+	$el.append("<p> Employee Number: " + employee.employeenumber + "</p>");
+	$el.append("<p> Position: " + employee.jobtitle + "</p>");
+	$el.append("<p> Annual Salary: " + employee.annualsalary + "</p>");
+	$el.append("<button class='deleteButton'>Delete</button>");
+
+	//$("#totalcash").append("<p>" + monthlySalaryTotal + "<p>"); 
+
 };
 
 
@@ -51,11 +59,12 @@ for(var i=0; i<array.length; i++){
 	console.log(employeeArray[i].annualsalary);
 	var salary = (parseInt(removeNonNumberic(employeeArray[i].annualsalary)));
 	//Step 2. Add the annual salaries together, putting them into the annualSalarySum variable.
-	// var annualSalarySum = 0;
-	// console.log("This is annualSalarySum:", annualSalarySum); This is not working.
 	//Step 3. Divide the annualSalarySum by 12. I established a function to do this calculation call it here. 
 	console.log(salary);
-	monthlySalarySumCalc(salary);	
+	monthlySalarySumCalc(salary);
+	$("#totalcash").empty();
+	$("#totalcash").append("<p>Here is the Monthly Salary Total: " + monthlySalarySum + "</p>");
+
 }
 	console.log("Here is the monthly total: ", monthlySalarySum);
  // return annualSalarySum;
