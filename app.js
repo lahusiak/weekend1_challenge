@@ -14,6 +14,7 @@ $(document).ready(function(){
 		$("#employeeinfo").find("input[type=text]").val("");
 		console.log(values);
 		employeeArray.push(values);
+		monthlySalaryTotal(employeeArray);
 		appendDom(values);
 	});
 });
@@ -27,40 +28,46 @@ function appendDom(employee){
 	$el.append("<p>" + employee.employeenumber + "</p>");
 	$el.append("<p>" + employee.jobtitle + "</p>");
 	$el.append("<p>" + employee.annualsalary + "</p>");
+	//$el.append("<p>") + answer + "</p>");
 };
 
+
+
+//Step 1. Get the annual salary from each object in the employeeArray.
+//So, I set up a function and within it I set up a for-loop, to loop through the array. 
+//Then, I established var salary equal to the current index of the array's annual salary.
+
 var annualSalarySum;
-// var monthlySalarySum;
+var monthlySalarySum;
 
 function removeNonNumberic(str){
 	var numericString = str.replace(/[^0-9]/g, '');
 	return numericString;
 };
 
-//Step 1. Get the annual salary from each object in the employeeArray.
-//So, I set up a function and within it I set up a for-loop, to loop through the array. 
-//Then, I established var salary equal to the current index of the array's annual salary.
-
 function monthlySalaryTotal(array){
+monthlySalarySum = 0;
 for(var i=0; i<array.length; i++){
-	 var salary = (parseInt(removeNonNumberic(employeeArray[i].annualsalary)));
-	 //Step 2. Add the annual salaries together, putting them into the annualSalarySum variable.
-	 // var annualSalarySum = 0;
-	 annualSalarySum=+salary;
-	 // console.log("This is annualSalarySum:", annualSalarySum); This is not working.
-	 //Step 3. Divide the annualSalarySum by 12. I established a function to do this calculation call it here.
+	console.log(employeeArray[i].annualsalary);
+	var salary = (parseInt(removeNonNumberic(employeeArray[i].annualsalary)));
+	//Step 2. Add the annual salaries together, putting them into the annualSalarySum variable.
+	// var annualSalarySum = 0;
+	// console.log("This is annualSalarySum:", annualSalarySum); This is not working.
+	//Step 3. Divide the annualSalarySum by 12. I established a function to do this calculation call it here. 
+	console.log(salary);
 	monthlySalarySumCalc(salary);	
 }
-// return employeeArray;//I don't know what to return. 
+	console.log("Here is the monthly total: ", monthlySalarySum);
+ // return annualSalarySum;
 };
 
 function monthlySalarySumCalc(salary){
-var monthlySalarySum = annualSalarySum/12;
+monthlySalarySum += salary/12;
 };
 
-var answer = monthlySalaryTotal(employeeArray);
+// var answer = monthlySalaryTotal(employeeArray);
 
-console.log("This is the answer:", answer);
+// console.log("This is the answer:", answer);
 
 
 
